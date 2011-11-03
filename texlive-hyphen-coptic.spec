@@ -1,5 +1,11 @@
+# revision 23085
+# category TLCore
+# catalog-ctan undef
+# catalog-date undef
+# catalog-license undef
+# catalog-version undef
 Name:		texlive-hyphen-coptic
-Version:	20111102
+Version:	20111103
 Release:	1
 Summary:	Coptic hyphenation patterns
 Group:		Publishing
@@ -49,6 +55,7 @@ are considered experimental.
 %_texmf_language_dat_d/hyphen-coptic
 %_texmf_language_def_d/hyphen-coptic
 %_texmf_language_lua_d/hyphen-coptic
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -57,6 +64,8 @@ are considered experimental.
 %build
 
 %install
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-coptic <<EOF
 %% from hyphen-coptic:
