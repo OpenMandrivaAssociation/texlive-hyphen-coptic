@@ -47,12 +47,12 @@ are considered experimental.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-coptic <<EOF
-%% from hyphen-coptic:
+\%\% from hyphen-coptic:
 coptic loadhyph-cop.tex
 EOF
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-coptic <<EOF
-%% from hyphen-coptic:
+\%\% from hyphen-coptic:
 \addlanguage{coptic}{loadhyph-cop.tex}{}{1}{1}
 EOF
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
