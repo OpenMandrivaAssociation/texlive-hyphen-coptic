@@ -5,8 +5,8 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-hyphen-coptic
-Version:	20111103
-Release:	2
+Version:	20120124
+Release:	1
 Summary:	Coptic hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -47,14 +47,16 @@ are considered experimental.
 %install
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-coptic <<EOF
-\%\% from hyphen-coptic:
+\%% from hyphen-coptic:
 coptic loadhyph-cop.tex
 EOF
+perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_dat_d}/hyphen-coptic
 mkdir -p %{buildroot}%{_texmf_language_def_d}
 cat > %{buildroot}%{_texmf_language_def_d}/hyphen-coptic <<EOF
-\%\% from hyphen-coptic:
+\%% from hyphen-coptic:
 \addlanguage{coptic}{loadhyph-cop.tex}{}{1}{1}
 EOF
+perl -pi -e 's|\\%%|%%|;' %{buildroot}%{_texmf_language_def_d}/hyphen-coptic
 mkdir -p %{buildroot}%{_texmf_language_lua_d}
 cat > %{buildroot}%{_texmf_language_lua_d}/hyphen-coptic <<EOF
 -- from hyphen-coptic:
