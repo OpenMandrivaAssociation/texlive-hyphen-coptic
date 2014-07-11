@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-hyphen-coptic
 Version:	20120124
-Release:	6
+Release:	7
 Summary:	Coptic hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
