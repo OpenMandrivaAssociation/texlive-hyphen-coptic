@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-hyphen-coptic
 Version:	20180303
-Release:	1
+Release:	2
 Summary:	Coptic hyphenation patterns
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -37,6 +37,8 @@ are considered experimental.
 %_texmf_language_dat_d/hyphen-coptic
 %_texmf_language_def_d/hyphen-coptic
 %_texmf_language_lua_d/hyphen-coptic
+%{_texmfdistdir}/tex/generic/hyph-utf8/loadhyph/*
+%{_texmfdistdir}/tex/generic/hyph-utf8/patterns/*/*
 
 #-----------------------------------------------------------------------
 %prep
@@ -45,6 +47,9 @@ are considered experimental.
 %build
 
 %install
+mkdir -p %{buildroot}%{_texmfdistdir}
+cp -fpar tex %{buildroot}%{_texmfdistdir}
+
 mkdir -p %{buildroot}%{_texmf_language_dat_d}
 cat > %{buildroot}%{_texmf_language_dat_d}/hyphen-coptic <<EOF
 \%% from hyphen-coptic:
