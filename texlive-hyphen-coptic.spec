@@ -13,7 +13,8 @@ BuildArch:	noarch
 BuildSystem:	texlive
 Requires:	texlive(hyph-utf8)
 Requires:	texlive(hyphen-base)
-Provides:	texlive(%{tl_name}) = %{tl_revision}
+Requires:	texlive-tlpkg
+Provides:	texlive(%{tl_name}) = %{version}
 
 %description
 Hyphenation patterns for Coptic in UTF-8 encoding as well as in ASCII-
@@ -21,3 +22,26 @@ based encoding for 8-bit engines. The latter can only be used with
 special Coptic fonts (like CBcoptic). The patterns are considered
 experimental.
 
+
+%install -a
+mkdir -p %{buildroot}%{_texmf_language_dat_d}
+cat > %{buildroot}%{_texmf_language_dat_d}/%{tl_name} <<'TL_HYPHEN_EOF'
+% from hyphen-coptic:
+coptic loadhyph-cop.tex
+TL_HYPHEN_EOF
+mkdir -p %{buildroot}%{_texmf_language_def_d}
+cat > %{buildroot}%{_texmf_language_def_d}/%{tl_name} <<'TL_HYPHEN_EOF'
+% from hyphen-coptic:
+\addlanguage{coptic}{loadhyph-cop.tex}{}{1}{1}
+TL_HYPHEN_EOF
+mkdir -p %{buildroot}%{_texmf_language_lua_d}
+cat > %{buildroot}%{_texmf_language_lua_d}/%{tl_name} <<'TL_HYPHEN_EOF'
+-- from hyphen-coptic:
+['coptic'] = {
+	loader = 'loadhyph-cop.tex',
+	lefthyphenmin = 1,
+	righthyphenmin = 1,
+	synonyms = {  },
+	patterns = 'hyph-cop.pat.txt',
+},
+TL_HYPHEN_EOF
